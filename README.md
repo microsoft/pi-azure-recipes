@@ -1,14 +1,26 @@
-# Project
+# Raspberry Pi Recipes for Azure
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+## Overview
 
-As the maintainer of this project, please make a few updates:
+Raspberry Pi recipes for Azure is a collection of samples that use use a Raspberry Pi and one or more Azure services. All the recipes included here represent end to end scenarios rather than just documenting how to interface with a single service. These are all written to get you up and running fast. Most take between 5 and 30 minutes to complete and require the least amount of hardware. All is code is designed to be adapted into other project, and many of these recipes can be combined.
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+If there is something you'd like to know how to do using Azure and a Raspberry Pi and you don't see it here open an issue and let us know. If you know how to do something cool with Azure and a Raspberry Pi open a PR and show us what you got!
+
+> Note: We do our best to minimize the cost of services, but some of these samples will incur a small charge on your Azure account.
+
+## Prerequisites
+
+1. Free Azure Account
+1. Basic understanding on Python
+1. Raspberry Pi 3 or 4
+1. Monitor/keyboard/mouse or ability to SSH into the Pi
+
+## Contents
+
+| Recipe | Description | Time | Prerequisites |
+|--------|-------------|------|---------------|
+| [01 IoT Hub d2c](./01_iot) | Send telemetry to Azure table storage using IoT Hub and Azure functions. | 15 Mins | None |
+| [02 IoT Hub c2d](./02_c2d_messages) | Trigger events on your Raspberry Pi using Azure functions and IoT Hub | 15 mins | None
 
 ## Contributing
 

@@ -1,0 +1,23 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "type": "eventHubTrigger",
+      "name": "events",
+      "direction": "in",
+      "eventHubName": "recipes-hub",
+      "connection": "IoTHubConnectionString",
+      "cardinality": "many",
+      "consumerGroup": "$Default",
+      "dataType": "binary"
+    },
+    {
+      "type": "table",
+      "name": "telemetry",
+      "tableName": "messages",
+      "partitionKey": "id",
+      "connection": "AzureWebJobsStorage",
+      "direction": "out"
+    }
+  ]
+}
