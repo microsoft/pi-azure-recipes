@@ -1,2 +1,2 @@
 azure.iot.device
-dotenv
+python-dotenv
