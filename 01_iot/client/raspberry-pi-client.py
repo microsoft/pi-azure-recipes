@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 from azure.iot.device import IoTHubDeviceClient, Message
 import os
 import json

@@ -1,4 +1,5 @@
-# https://github.com/Azure/azure-iot-sdk-python/blob/master/azure-iot-device/samples/async-hub-scenarios/receive_message.py
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
 
 import asyncio
 import os

@@ -6,17 +6,17 @@
 
 1. An active Azure account. If you don't have one, you can sign up for a [free account](https://azure.microsoft.com/free/).
 1. [VS Code](https://code.visualstudio.com/Download)
-1. [Azure IoT Hub](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-toolkit), [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions), and [Azure Storage]() extension for VS Code
+1. [Azure IoT Hub](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-toolkit), [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions), and [Azure Storage](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurestorage) extension for VS Code
 1. Hardware listed below
 
 ### Hardware
 
 | Item | Description | Link |
 |-|-|-|
-| Raspberry Pi 3 or 4 | Single board computer | |
-| USB A to USB C cable (Pi 4) | Power cable for Raspberry Pi 4 | |
-| USB A to Micro USB cable (Pi 3) | Power cable for Raspberry Pi 3 | |
-| 2 amp USB power supply | Power Supply for Raspberry Pi | |
+| Raspberry Pi 3 or 4 | Single board computer | [Adafruit](https://www.adafruit.com/product/4292) |
+| USB C power supply (Pi 4) | Power cable for Raspberry Pi 4 | [Adafruit](https://www.adafruit.com/product/4298) |
+| Micro USB USB power supply (Pi 3) | Power cable for Raspberry Pi 3 | [Adafruit](https://www.adafruit.com/product/1995) |
+| SD Card with Raspberry Pi OS | Operating system for the Pi | [Adafruit](https://www.adafruit.com/product/2820) |
 
 ## Setup Azure Resources
 
