@@ -22,7 +22,7 @@ if __name__ == '__main__':
 
             # Build a json string
             data_to_send = json.dumps({'id': device_id, 'value': value})
-            
+
             message = Message(data_to_send)
             client.send_message(message)
             print('message sent')
