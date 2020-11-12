@@ -1,0 +1,3 @@
+azure-cognitiveservices-vision-computervision
+python-dotenv
+matplotlib
