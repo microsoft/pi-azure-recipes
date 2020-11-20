@@ -29,13 +29,26 @@ Our provision the Azure resources we'll need for this sample. We're going to use
 
 ### Preparing your environment
 
-1. If you haven't already, clone this repo to your computer.
+1. If you haven't already, clone this repo to your computer
+
 1. Open command prompt or terminal and navigate to *pi-azure-recipes*
+
 1. In command prompt or terminal type and run ```code 02_c2d```. This will open the project folder in VS Code.
+
 1. Navigate to the Azure Extension by typing **CTRL + SHIFT + A** or by selecting the Azure logo in the left navigation
+
 1. In the Functions Tab select *create new project*
-1. Choose browse, and select the folder named *data_processing*
-1. This will initialize the function in VS Code
+
+1. Choose browse, and select the folder named *messenger*
+
+1. Select *Python* for programing language and then select the interpeter path
+    > *Note: Only python version 3.6, 3.7, and 3.8 are supported*
+
+1. Select *Skip for now* for template
+
+1. Select *No* for all the prompts in the creation process
+
+1. Your function is now initilized in VS Code
 
 ### Setup IoT Hub
 
