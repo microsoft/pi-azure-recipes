@@ -47,7 +47,7 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. Select *No* for all the prompts in the creation process
 
-1. Your function is now initilized in VS Code
+1. Your function is now initialized in VS Code
 
 ### Create IoT Hub
 
