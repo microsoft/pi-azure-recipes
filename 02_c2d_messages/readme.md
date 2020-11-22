@@ -48,18 +48,26 @@ Our provision the Azure resources we'll need for this sample. We're going to use
 
 1. Select *No* for all the prompts in the creation process
 
-1. Your function is now initilized in VS Code
+1. Your function is now initialized in VS Code
 
 ### Setup IoT Hub
 
 1. Next you'll set up and IoT Hub. This will deploy a resource on Azure.
+
 1. Navigate back the explorer by typing **Ctrl + Shift + E** or selecting the pages icon from the left navigation
+
 1. In the *Azure Iot Hub* tab select the options menu in the top right
+
 1. Select *Create new IoT Hub*
+
 1. From the drop menu select your subscription the select *+ Create Resource Group*
+
 1. The IoT Hub should now appear in the *Azure IoT Hub* tab
+
 1. From the options menu select *Copy IoT Hub Connection String*
+
 1. Open the *local.settings.json* file that was created with your function.
+
 1. Add the connection string to *Values* with the variables name **"IoTHubConnectionString"**
     ```json
     "IoTHubConnectionString": "YOUR-CONNECTION-STRING"
