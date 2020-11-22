@@ -29,24 +29,45 @@ Our provision the Azure resources we'll need for this sample. We're going to use
 
 ### Preparing your environment
 
-1. If you haven't already, clone this repo to your computer.
+1. If you haven't already, clone this repo to your computer
+
 1. Open command prompt or terminal and navigate to *pi-azure-recipes*
+
 1. In command prompt or terminal type and run ```code 02_c2d```. This will open the project folder in VS Code.
+
 1. Navigate to the Azure Extension by typing **CTRL + SHIFT + A** or by selecting the Azure logo in the left navigation
+
 1. In the Functions Tab select *create new project*
-1. Choose browse, and select the folder named *data_processing*
-1. This will initialize the function in VS Code
+
+1. Choose browse, and select the folder named *messenger*
+
+1. Select *Python* for programing language and then select the interpeter path
+    > *Note: Only python version 3.6, 3.7, and 3.8 are supported*
+
+1. Select *Skip for now* for template
+
+1. Select *No* for all the prompts in the creation process
+
+1. Your function is now initialized in VS Code
 
 ### Setup IoT Hub
 
 1. Next you'll set up and IoT Hub. This will deploy a resource on Azure.
+
 1. Navigate back the explorer by typing **Ctrl + Shift + E** or selecting the pages icon from the left navigation
+
 1. In the *Azure Iot Hub* tab select the options menu in the top right
+
 1. Select *Create new IoT Hub*
+
 1. From the drop menu select your subscription the select *+ Create Resource Group*
+
 1. The IoT Hub should now appear in the *Azure IoT Hub* tab
+
 1. From the options menu select *Copy IoT Hub Connection String*
+
 1. Open the *local.settings.json* file that was created with your function.
+
 1. Add the connection string to *Values* with the variables name **"IoTHubConnectionString"**
     ```json
     "IoTHubConnectionString": "YOUR-CONNECTION-STRING"

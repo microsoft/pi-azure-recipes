@@ -40,9 +40,14 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. Choose *browse*, and select the folder named *data_processing*
 
-1. This will initialize the function in VS Code
+1. Select *Python* for programing language and then select the interpeter path
+    > *Note: Only python version 3.6, 3.7, and 3.8 are supported*
+
+1. Select *Skip for now* for template
 
 1. Select *No* for all the prompts in the creation process
+
+1. Your function is now initialized in VS Code
 
 ### Create IoT Hub
 
