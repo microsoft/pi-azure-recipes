@@ -32,6 +32,18 @@ This project welcomes contributions and suggestions.  Most contributions require
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
 the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
 
+If you know how to do something cool with a Raspberry Pi and Azure we'd love to see it! To contribute open a PR with your additions and someone from the team will review it.
+
+### Guidelines
+
+- Keep all of the file for each example in it own directory. Using this format: ```01_example_name```
+- Include a readme with instructions on how to setup the example
+- If you would like to use images in your readme they should referenced not uploaded to this repo
+- Include an estimated cost for the Azure resources
+- When possible and practical use one programing language for the whole example
+- Use flake8 to lint Python code
+- Examples should be secure by default, meaning connection strings and api key can't be checked in by accident. To do this we wrote a shell script that generate .env files that the user populates with their keys.
+
 When you submit a pull request, a CLA bot will automatically determine whether you need to provide
 a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
 provided by the bot. You will only need to do this once across all repos using our CLA.
