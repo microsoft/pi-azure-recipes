@@ -1,4 +1,4 @@
-# Getting telemetry from a Raspberry Pi to Azure
+# Using Azure Computer Vision on a Raspberry Pi
 
 ## Overview
 
@@ -20,8 +20,6 @@
 
 ## Setup Azure Resources
 
-First you'll provision the Azure resources needed for this sample. You're going to use IoT Hub, Azure Functions, and Table Storage.
-
 | Resource | Description | Link |
 |-|-|-|
 | Computer Vision | Computer vision API from Azure | [Azure](https://azure.microsoft.com/en-us/services/cognitive-services/computer-vision/) |
@@ -36,13 +34,13 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 ### Create a computer vision resource
 
-1. Fist you'll need to create [a computer vision resource](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision)
+1. First you'll need to create [a computer vision resource](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision)
 
 1. Select your subscription 
 
-1. For your resource group select *Create new*, and give your resource group a name
+1. For resource group select *Create new*, and give your resource group a name
 
-1. Select a Location that is located near you
+1. Select a Location that is near you
 
 1. Give your computer vision resource a name
 
@@ -54,24 +52,8 @@ First you'll provision the Azure resources needed for this sample. You're going 
 1. You will need the key and endpoint from this resource to connect your Raspberry Pi to it. Select *Keys and Endpoints* from the left navigation.
 
 1. Make a note of the key and endpoint for your resource, you'll use these later on your Pi.
+    > Rember to treat these like passwords
 
-### Create storage account
-
-1. Press *F1* to open the command palette, search for and select **Azure Storage: Create Storage Account**
-
-1. Select your subscription
-
-1. Give you storage account a name
-    > Note: this name has to be globally unique
-
-1. Open the command palette, search for and select **Azure Storage: Copy Connection String**
-
-1. Open the *local.settings.json* file that was created with your function.
-
-1. Add the connection string to *Values* with the variables name **"AzureWebJobsStorage"**
-    ```json
-    "AzureWebJobsStorage": "YOUR-CONNECTION-STRING"
-    ```
 
 ### Setup you Raspberry Pi Device
 
@@ -85,7 +67,7 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. Once the script finishes navigate to the *client* folder press **Ctrl + H* to show hidden files.
 
-1. Open the newly created *.env* file in a text editor and fill in you key and endpoint
+1. Open the newly created *.env* file in a text editor and fill in your key and endpoint
     ```
     SUBSCRIPTION_KEY='YOUR-SUBSCRIPTION-KEY'
     ENDPOINT='YOUR-ENDPOINT'
