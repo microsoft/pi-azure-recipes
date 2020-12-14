@@ -20,7 +20,8 @@ If there is something you'd like to know how to do using Azure and a Raspberry P
 | Recipe | Description | Time | Prerequisites |
 |--------|-------------|------|---------------|
 | [01 IoT Hub d2c](./01_iot) | Send telemetry to Azure table storage using IoT Hub and Azure functions. | 25 Mins | None |
-| [02 IoT Hub c2d](./02_c2d_messages) | Trigger events on your Raspberry Pi using Azure functions and IoT Hub | 15 mins | None
+| [02 IoT Hub c2d](./02_c2d_messages) | Trigger events on your Raspberry Pi using Azure functions and IoT Hub | 15 mins | None |
+| [03 Computer Vision](./03_cv) | Use the computer vision cognitive service to detect objects in an image | 20 Mins | None |
 
 ## Resources
 

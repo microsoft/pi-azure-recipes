@@ -59,6 +59,11 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. Give your resource group a name
 
+1. Select a Location that is located near you
+
+1. Select *F1: Free* for the pricing tier
+    > Note: You can only have one free tier active per account
+
 1. The IoT Hub should now appear in the *Azure IoT Hub* tab
 
 1. Open the command palette, search for and select **Azure IoT Hub: Copy IoT Hub Connection String**

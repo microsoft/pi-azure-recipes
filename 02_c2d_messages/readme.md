@@ -96,7 +96,7 @@ Our provision the Azure resources we'll need for this sample. We're going to use
 
 1. In the client folder on your Pi type
     ```sh
-    source ./.venv/Scripts/activate
+    source ./.venv/bin/activate
     ```
 
 1. Then type
