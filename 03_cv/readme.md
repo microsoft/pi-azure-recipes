@@ -13,7 +13,7 @@
 | Item | Description | Link |
 |-|-|-|
 | Raspberry Pi 3 or 4 | Single board computer | [Adafruit](https://www.adafruit.com/product/4292) |
-| Raspberry Pi Camera V2 | Ribbon camera for the Pi | |
+| Raspberry Pi Camera V2 | Ribbon camera for the Pi | [Adafruit](https://www.adafruit.com/product/3099) |
 | USB C power supply (Pi 4) | Power cable for Raspberry Pi 4 | [Adafruit](https://www.adafruit.com/product/4298) |
 | Micro USB USB power supply (Pi 3) | Power cable for Raspberry Pi 3 | [Adafruit](https://www.adafruit.com/product/1995) |
 | SD Card with Raspberry Pi OS | Operating system for the Pi | [Adafruit](https://www.adafruit.com/product/2820) |
