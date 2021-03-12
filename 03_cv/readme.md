@@ -2,6 +2,8 @@
 
 ## Overview
 
+Let your Raspberry Pi see with Azure Computer Vision! By the end of this tutorial, you'll have your Raspberry Pi detecting objects that are in the frame of the camera. You can try this out or a prototype a product at no cost using a free tier of the computer vision cognitive service.
+
 ## Prerequisites
 
 1. An active Azure account. If you don't have one, you can sign up for a [free account](https://azure.microsoft.com/free/).
