@@ -112,7 +112,7 @@ First you'll provision the Azure resources needed for this sample. You're going 
     ```
     SCOPE_ID='PASTE-YOUR-SCOPE_ID-HERE'
     ```
-![Administration/Device Connection Screenshot](https://github.com/microsoft/pi-azure-recipes/tree/main/04_iot_central/connection.png?raw=true)
+![Administration/Device Connection Screenshot](https://github.com/microsoft/pi-azure-recipes/tree/main/04_iot_central/assets/connection.png?raw=true)
 1. Now click **SAS-IoT-Devices** and click the copy blue box to the right of the Primary key to copy the key to the clipboard.  Now paste the key into the location shown below
     ```
     GROUP_SYMMETRIC_KEY='PASTE-YOUR-GROUP_SYMMETRIC_KEY-HERE'
@@ -137,19 +137,19 @@ First you'll provision the Azure resources needed for this sample. You're going 
 1. Now that the device is sending data to IoT Central lets look at our device in IoT Central and interact with it.  Return to your application and click **Devices** then click on your device template "RespberryPi".  You should see a device has connected and listed.  If not then check to make sure the code is running and the scope_id and group_symmetric_key have been configured correctly on the environment.
 
 1. clicking on the device should open the **About** tab where you can see information about your Raspberry Pi that it has sent to IoT Central.  You can also see the remaining free disk space.
-![About Screenshot](https://github.com/microsoft/pi-azure-recipes/tree/main/04_iot_central/about.png?raw=true)
+![About Screenshot](https://github.com/microsoft/pi-azure-recipes/tree/main/04_iot_central/assets/about.png?raw=true)
 
 1. Clicking on **Overview** link at the top of the page will show the telemetry information flowing from the device including CPU usage, RAM usage, CPU clock frequency, and CPU temperature.
-![Overview Screenshot](https://github.com/microsoft/pi-azure-recipes/tree/main/04_iot_central/overview.png?raw=true)
+![Overview Screenshot](https://github.com/microsoft/pi-azure-recipes/tree/main/04_iot_central/assets/overview.png?raw=true)
 
 1. Clicking the **Settings** link will allow you to turn on or off the red LED on the Raspberry Pi.  You can select On or Off and then click the **Save** link to send the setting to the device.  The device will acknowledge the receipt of the setting and show it bellow the dropdown.
-![Settings Screenshot](https://github.com/microsoft/pi-azure-recipes/tree/main/04_iot_central/settings.png?raw=true)
+![Settings Screenshot](https://github.com/microsoft/pi-azure-recipes/tree/main/04_iot_central/assets/settings.png?raw=true)
 
 1. Clicking the **Commands** link lets you send a text message you typed in to the Raspberry PI.  If you have headphones or a speaker connected you will hear the text read back to you via the espeak software installed in the prerequisites section.   You can see the command history by clicking **Command History** to the right, you should see that the text sent is also echoed back to the device as a response from the command. This command is a direct method meaning the device must be connected to IoT Central for the command to execute.  The **Apply CPU load** command is a cloud to device command message that will be stored in the cloud for 24 hours waiting for the device to connect and pick up the command.  This command allows you to enter a number of seconds to apply load to the CPU, when run a factorial 100 command is run on the device to simulate load for the set time.  This results in one of the four cores on the CPU maxing out and increases CPU usage by about 25%.  This results in the CPU temperature and usage increasing and can be seen in the **Overview** tabs chart.
-![Commands Screenshot](https://github.com/microsoft/pi-azure-recipes/tree/main/04_iot_central/commands.png?raw=true)
+![Commands Screenshot](https://github.com/microsoft/pi-azure-recipes/tree/main/04_iot_central/assets/commands.png?raw=true)
 
 1. Finally clicking **Raw Data** shows a raw data view of the telemetry and reported properties from the device.  This is always available regardless of if a device has an associated device template or not.  It is very handy for debugging the device template vs. the data being sent from the device.
-![Raw Data Screenshot](https://github.com/microsoft/pi-azure-recipes/tree/main/04_iot_central/raw.png?raw=true)
+![Raw Data Screenshot](https://github.com/microsoft/pi-azure-recipes/tree/main/04_iot_central/assets/raw.png?raw=true)
 
 &nbsp;
 
