@@ -1,0 +1,234 @@
+[
+    {
+      "@id": "dtmi:RaspberryPi;1",
+      "@type": "Interface",
+      "contents": [
+        {
+          "@id": "dtmi:RaspberryPi:pi_info;1",
+          "@type": "Property",
+          "displayName": {
+            "en": "Pi Information"
+          },
+          "name": "pi_info",
+          "schema": {
+            "@id": "dtmi:RaspberryPi:pi_info:schema;1",
+            "@type": "Object",
+            "displayName": {
+              "en": "Object"
+            },
+            "fields": [
+              {
+                "@id": "dtmi:RaspberryPi:pi_info:schema:CPUArchitecture;1",
+                "displayName": {
+                  "en": "CPU Architecture"
+                },
+                "name": "cpu_architecture",
+                "schema": "string"
+              },
+              {
+                "@id": "dtmi:RaspberryPi:pi_info:schema:cpu_model;1",
+                "displayName": {
+                  "en": "CPU Model"
+                },
+                "name": "cpu_model",
+                "schema": "string"
+              },
+              {
+                "@id": "dtmi:RaspberryPi:pi_info:schema:cpu_revision;1",
+                "displayName": {
+                  "en": "CPU Revision"
+                },
+                "name": "cpu_revision",
+                "schema": "string"
+              },
+              {
+                "@id": "dtmi:RaspberryPi:pi_info:schema:estimated_mips;1",
+                "displayName": {
+                  "en": "Estimated MIPS"
+                },
+                "name": "estimated_mips",
+                "schema": "float"
+              },
+              {
+                "@id": "dtmi:RaspberryPi:pi_info:schema:hardware;1",
+                "displayName": {
+                  "en": "Hardware"
+                },
+                "name": "hardware",
+                "schema": "string"
+              },
+              {
+                "@id": "dtmi:RaspberryPi:pi_info:schema:hardware_revision;1",
+                "displayName": {
+                  "en": "Hardware Revision"
+                },
+                "name": "hardware_revision",
+                "schema": "string"
+              },
+              {
+                "@id": "dtmi:RaspberryPi:pi_info:schema:ip_address;1",
+                "displayName": {
+                  "en": "IP Address"
+                },
+                "name": "ip_address",
+                "schema": "string"
+              },
+              {
+                "@id": "dtmi:RaspberryPi:pi_info:schema:min_cpu_frequency;1",
+                "displayName": {
+                  "en": "Min CPU Frequency"
+                },
+                "name": "min_cpu_frequency",
+                "schema": "float"
+              },
+              {
+                "@id": "dtmi:RaspberryPi:pi_info:schema:max_cpu_frequency;1",
+                "displayName": {
+                  "en": "Max CPU Frequency"
+                },
+                "name": "max_cpu_frequency",
+                "schema": "float"
+              },
+              {
+                "@id": "dtmi:RaspberryPi:pi_info:schema:model;1",
+                "displayName": {
+                  "en": "Pi Model"
+                },
+                "name": "model",
+                "schema": "string"
+              },
+              {
+                "@id": "dtmi:RaspberryPi:pi_info:schema:serial_number;1",
+                "displayName": {
+                  "en": "Serial Number"
+                },
+                "name": "serial_number",
+                "schema": "string"
+              }
+            ]
+          },
+          "writable": false
+        },
+        {
+          "@id": "dtmi:RaspberryPi:cpu_usage;1",
+          "@type": "Telemetry",
+          "displayName": {
+            "en": "CPU Usage"
+          },
+          "name": "cpu_usage",
+          "schema": "float"
+        },
+        {
+          "@id": "dtmi:RaspberryPi:ram_usage;1",
+          "@type": "Telemetry",
+          "displayName": {
+            "en": "RAM usage"
+          },
+          "name": "ram_usage",
+          "schema": "integer"
+        },
+        {
+          "@id": "dtmi:RaspberryPi:cpu_freq;1",
+          "@type": "Telemetry",
+          "displayName": {
+            "en": "CPU Frequency"
+          },
+          "name": "cpu_freq",
+          "schema": "float"
+        },
+        {
+          "@id": "dtmi:RaspberryPi:cpu_temp;1",
+          "@type": "Telemetry",
+          "displayName": {
+            "en": "CPU Temperature"
+          },
+          "name": "cpu_temp",
+          "schema": "float"
+        },
+        {
+          "@id": "dtmi:RaspberryPi:remaining_disk_space;1",
+          "@type": "Property",
+          "displayName": {
+            "en": "Remaining Disk Space"
+          },
+          "name": "remaining_disk_space",
+          "schema": "string",
+          "writable": false
+        },
+        {
+          "@id": "dtmi:RaspberryPi:red_led_control;1",
+          "@type": "Property",
+          "displayName": {
+            "en": "Red LED Control"
+          },
+          "name": "red_led_control",
+          "schema": {
+            "@type": "Enum",
+            "valueSchema": "string",
+            "enumValues": [
+                {
+                    "name": "On",
+                    "displayName": "On",
+                    "enumValue": "on"
+                },
+                {
+                    "name": "Off",
+                    "displayName": "Off",
+                    "enumValue": "off"
+                }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "@id": "dtmi:RaspberryPi:speak_to_me;1",
+          "@type": "Command",
+          "commandType": "synchronous",
+          "displayName": {
+            "en": "Speak to Me"
+          },
+          "name": "speak_to_me",
+          "request": {
+            "@type": "CommandPayload",
+            "displayName": {
+              "en": "Text"
+            },
+            "name": "text",
+            "schema": "string"
+          },
+          "response": {
+            "@type": "CommandPayload",
+            "displayName": {
+              "en": "Text Echo"
+            },
+            "name": "text_echo",
+            "schema": "string"
+          }
+        },
+        {
+          "@id": "dtmi:RaspberryPi:apply_cpu_load;1",
+          "@type": "Command",
+          "durable": true,
+          "displayName": {
+            "en": "Apply CPU Load"
+          },
+          "name": "apply_cpu_load",
+          "request": {
+            "@type": "CommandPayload",
+            "displayName": {
+              "en": "Time in Seconds"
+            },
+            "name": "time_in_seconds",
+            "schema": "integer"
+          }
+        }
+      ],
+      "displayName": {
+        "en": "RaspberryPi"
+      },
+      "@context": [
+        "dtmi:iotcentral:context;2",
+        "dtmi:dtdl:context;2"
+      ]
+    }
+  ]
