@@ -1,7 +1,7 @@
 # Getting telemetry from a Raspberry Pi to Azure IoT Central
 
 <p align="center">
-  <img width="333" height="250" src="https://github.com/microsoft/pi-azure-recipes/blob/iot-central/04_iot_central/assets/iot_central.png" alt="IoT Central Logo">
+  <img width="624" height="254" src="https://github.com/microsoft/pi-azure-recipes/blob/iot-central/04_iot_central/assets/iotc_heart_pi.png" alt="IoT Central loves Raspberry Pi">
 </p>
 
 ## Overview
