@@ -64,7 +64,7 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 | Resource | Description | Link |
 |-|-|-|
-| IoT Central | Easy to use cloud IoT solution | |
+| IoT Central | Easy to use cloud IoT solution | https://aka.ms/iotcentral|
 
 &nbsp;
 
