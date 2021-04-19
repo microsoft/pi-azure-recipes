@@ -2,6 +2,8 @@
 
 ## Overview
 
+Get started with Azure IoT Hub and Raspberry Pi! This sample projects has everything you need to get data from your Raspberry Pi to Table Storage in Azure. The code here is meant to be a starting point for your project. In this sample we set up 3 Azure resources, an IoT Hub, Functions, and Table Storage. IoT Hub connects internet enabled devices to other Azure services, Functions offers serverless compute which we use to process and save the data, and Table Storage is a no SQL database so we have somewhere to keep the data. The only services in this sample that does not offer a free tier is Table Storage.
+
 ## Prerequisites
 
 1. An active Azure account. If you don't have one, you can sign up for a [free account](https://azure.microsoft.com/free/).
@@ -24,9 +26,9 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 | Resource | Description | Link |
 |-|-|-|
-| IoT Hub | Two way IoT communication platform | |
-| Azure Functions | Serverless compute platform | |
-| Table Storage | No SQL database | |
+| IoT Hub | Two way IoT communication platform | [Azure](https://azure.microsoft.com/en-us/services/iot-hub/) |
+| Azure Functions | Serverless compute platform | [Azure](https://azure.microsoft.com/en-us/services/functions/) |
+| Table Storage | No SQL database | [Azure](https://azure.microsoft.com/en-us/services/storage/tables/) |
 
 ### Preparing your environment
 
@@ -40,7 +42,7 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. Choose *browse*, and select the folder named *data_processing*
 
-1. Select *Python* for programing language and then select the interpeter path
+1. Select *Python* for programing language and then select the interpreter path
     > *Note: Only python version 3.6, 3.7, and 3.8 are supported*
 
 1. Select *Skip for now* for template
