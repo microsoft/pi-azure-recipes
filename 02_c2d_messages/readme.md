@@ -1,6 +1,8 @@
-# Getting telemetry from a Raspberry Pi to Azure
+# Getting message from Azure to Raspberry Pi
 
 ## Overview
+
+Getting messages from Azure to your Raspberry Pi is a useful tool for many IoT scenarios. You can turn on a fan in a greenhouse, start a machine in a production line, or change the type of telemetry being captured at a remote location. In this tutorial we'll show you how to setup an IoT Hub and us an Azure Function to send a simple message to your Raspberry Pi. We then parse the message on the Pi and print out the message. You can use this project as a starting point for you next IoT project!
 
 ## Prerequisites
 
@@ -20,12 +22,12 @@
 
 ## Setup Azure Resources
 
-Our provision the Azure resources we'll need for this sample. We're going to use IoT Hub, Azure Functions, and Table Storage. We'll also setup a budget, so you can get a warning if your services are racking up a big bill. We provide two ways to provision the resources, you can walk through the step by step instructions or deploy all the resources at once using an Azure Resource Manager template.
+First we'll provision the Azure resources we need for this sample. We're going to use IoT Hub, Azure Functions, and Table Storage. We'll also setup a budget, so you can get a warning if your services are racking up a big bill. We provide two ways to provision the resources, you can walk through the step by step instructions or deploy all the resources at once using an Azure Resource Manager template.
 
 | Resource | Description | Link |
 |-|-|-|
-| IoT Hub | Two way IoT communication platform | |
-| Azure Functions | Serverless compute platform | |
+| IoT Hub | Two way IoT communication platform | [Azure](https://azure.microsoft.com/en-us/services/iot-hub/) |
+| Azure Functions | Serverless compute platform | [Azure](https://azure.microsoft.com/en-us/services/storage/tables/) |
 
 ### Preparing your environment
 
@@ -41,7 +43,7 @@ Our provision the Azure resources we'll need for this sample. We're going to use
 
 1. Choose browse, and select the folder named *messenger*
 
-1. Select *Python* for programing language and then select the interpeter path
+1. Select *Python* for programing language and then select the interpreter path
     > *Note: Only python version 3.6, 3.7, and 3.8 are supported*
 
 1. Select *Skip for now* for template
