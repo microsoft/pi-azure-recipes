@@ -1,7 +1,7 @@
 #!/bin/bash
 # Setup Virtual Environment
 echo "Python virtual environment creation script"
-python -m venv ./.venv --system-site-packages
+python3 -m venv ./.venv --system-site-packages
 echo "Virtual evnironment created"
 source ./.venv/bin/activate
 echo "Virtual enviornment activated"

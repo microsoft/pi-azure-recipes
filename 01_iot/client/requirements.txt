@@ -1,2 +1,2 @@
-azure.iot.device
-python-dotenv
+azure-iot-device==2.6.0
+python-dotenv==0.19.2
