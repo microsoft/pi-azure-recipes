@@ -11,7 +11,8 @@ Get started with Azure IoT Hub and Raspberry Pi! This sample projects has everyt
 1. [Azure IoT Hub](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-toolkit), [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions), and [Azure Storage](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurestorage) extension for VS Code
 2. [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 3. [Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#install-the-azure-functions-core-tools)
-4. Hardware listed below
+4. [Python 3](https://www.python.org/downloads/)
+5. Hardware listed below
 
 ### Hardware
 
@@ -118,7 +119,7 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. Run the *python_environment_setup.sh* shell script
 
-1. Once the script finishes open the newly created *.env* file
+1. Once the script finishes open the sample *.env* file
 
 1. Paste the device connection string there
     ```
@@ -127,15 +128,14 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. In the client folder on your Pi type
     ```sh
-    source ./.venv/Scripts/activate
-    ```
-
-1. Then type
+    source ./.venv/bin/activate
+    ``` 
+2. Then type
     ```sh
-    python3 raspberry-pi-client.py
+    python raspberry_pi_client.py
     ```
 
-1. Your device is now sending telemetry to IoT Hub
+3. Your device is now sending telemetry to IoT Hub
 
 ### Test your function locally
 
@@ -149,9 +149,9 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. Open a terminal and execute each of the following commands, replacing `<VARIABLE>` placeholders as needed:
    ```bash
-   $ az login
-   $ az account set -s '<YOUR SUBCRIPTION NAME>'
-   $ az iot hub show --name '<IOT HUB NAME>' --query properties.eventHubEndpoints.events.path
+   az login
+   az account set -s '<YOUR SUBCRIPTION NAME>'
+   az iot hub show --name '<IOT HUB NAME>' --query properties.eventHubEndpoints.events.path
    ``` 
 2. Open 01_iot\data_processing\telemetry_saver\function.json
      ``` 
