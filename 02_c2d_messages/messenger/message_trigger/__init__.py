@@ -7,12 +7,12 @@ import azure.functions as func
 
 from azure.iot.hub import IoTHubRegistryManager
 
-CONNECTION_STRING = os.getenv("IOT_HUB_CONNECTION_STRING")
-DEVICE_ID = "rpi-test"
+CONNECTION_STRING = os.getenv("IoTHubConnectionString")
+DEVICE_ID = os.getenv("DeviceId")
 
 
 def send_message(data):
-    registry_manager = IoTHubRegistryManager(CONNECTION_STRING)
+    registry_manager = IoTHubRegistryManager.from_connection_string(CONNECTION_STRING)
     props = {}
     props.update(contentType="application/json")
     registry_manager.send_c2d_message(DEVICE_ID, data, properties=props)
