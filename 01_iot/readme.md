@@ -119,7 +119,7 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. Run the *python_environment_setup.sh* shell script
 
-1. Once the script finishes open the sample *.env* file
+1. Once the script finishes open the newly created *.env* file
 
 1. Paste the device connection string there
     ```
