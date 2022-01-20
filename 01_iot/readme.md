@@ -41,9 +41,9 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. Add the IoT devices capability to your subscription. In your terminal execute each of the following commands, replacing `<VARIABLE>` as needed:
    ```bash
-   $ az login
-   $ az account set -s '<YOUR SUBCRIPTION NAME>'
-   $ az provider register --namespace Microsoft.Devices
+   az login
+   az account set -s '<YOUR SUBCRIPTION NAME>'
+   az provider register --namespace Microsoft.Devices
    ```
 
 1. In command prompt or terminal type and run ```code 01_iot```. This will open the project folder in VS Code
