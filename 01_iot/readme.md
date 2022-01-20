@@ -12,7 +12,7 @@ Get started with Azure IoT Hub and Raspberry Pi! This sample projects has everyt
 1. [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 1. [Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#install-the-azure-functions-core-tools)
 1. [Python 3](https://www.python.org/downloads/)
-5. Hardware listed below
+1. Hardware listed below
 
 ### Hardware
 
@@ -39,27 +39,27 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. Open command prompt or terminal and navigate to *pi-azure-recipes*
 
-2. Add the IoT devices capability to your subscription. In your terminal execute each of the following commands, replacing `<VARIABLE>` as needed:
+1. Add the IoT devices capability to your subscription. In your terminal execute each of the following commands, replacing `<VARIABLE>` as needed:
    ```bash
    $ az login
    $ az account set -s '<YOUR SUBCRIPTION NAME>'
    $ az provider register --namespace Microsoft.Devices
    ```
 
-3. In command prompt or terminal type and run ```code 01_iot```. This will open the project folder in VS Code
+1. In command prompt or terminal type and run ```code 01_iot```. This will open the project folder in VS Code
 
-4. Press *F1* to open the command palette, search for and select **Azure Functions: Create New Project**
+1. Press *F1* to open the command palette, search for and select **Azure Functions: Create New Project**
 
-5. Choose *browse*, and select the folder named *data_processing*
+1. Choose *browse*, and select the folder named *data_processing*
 
-6. Select *Python* for programing language and then select the interpreter path
+1. Select *Python* for programing language and then select the interpreter path
     > *Note: Only python version 3.6, 3.7, and 3.8 are supported*
 
-7. Select *Skip for now* for template
+1. Select *Skip for now* for template
 
-8. Select *No* for all the prompts in the creation process
+1. Select *No* for all the prompts in the creation process
 
-9.  Your function is now initialized in VS Code
+1.  Your function is now initialized in VS Code
 
 ### Create IoT Hub
 
@@ -130,20 +130,20 @@ First you'll provision the Azure resources needed for this sample. You're going 
     ```sh
     source ./.venv/bin/activate
     ``` 
-2. Then type
+1. Then type
     ```sh
     python raspberry_pi_client.py
     ```
 
-3. Your device is now sending telemetry to IoT Hub
+1. Your device is now sending telemetry to IoT Hub
 
 ### Test your function locally
 
 1. In the VS Code on you computer open **__init\__\.py** from  *01_iot\data_processing\telemetry_saver*
 
-2. Press *F5* to begin debugging
+1. Press *F5* to begin debugging
 
-3. You should see the telemetry from the Pi in the terminal windows
+1. You should see the telemetry from the Pi in the terminal windows
 
 ### Deploying your function
 
@@ -153,24 +153,24 @@ First you'll provision the Azure resources needed for this sample. You're going 
    az account set -s '<YOUR SUBCRIPTION NAME>'
    az iot hub show --name '<IOT HUB NAME>' --query properties.eventHubEndpoints.events.path
    ``` 
-2. Open 01_iot\data_processing\telemetry_saver\function.json
+1. Open 01_iot\data_processing\telemetry_saver\function.json
      ``` 
-2. Open  *01_iot\data_processing\local.settings.json* and add a new key "eventHubName" and set the value to the output from the previous step. It should look similar to the following:
+1. Open  *01_iot\data_processing\local.settings.json* and add a new key "eventHubName" and set the value to the output from the previous step. It should look similar to the following:
    ```json
    "eventHubName": "iothub-ehub-xxxxxxxxxx-xxxxxxxx-xxxxxxxxxx"
    ```
 
-4. Press *F1* to open the command palette, search for and select *Azure Functions: Deploy to function app*
+1. Press *F1* to open the command palette, search for and select *Azure Functions: Deploy to function app*
 
     > Note: this will create a few resources in your azure subscription
 
-5. Give your function app a name
+1. Give your function app a name
 
-6. Select Python 3.8
+1. Select Python 3.8
 
-7. Select a region near where you are located
+1. Select a region near where you are located
 
-8. When the function deployment completes you will be given the option to upload your local settings. Select *Upload settings* to upload your connection string to the App settings in Azure
+1. When the function deployment completes you will be given the option to upload your local settings. Select *Upload settings* to upload your connection string to the App settings in Azure
 
 ## Clean up Resources
 

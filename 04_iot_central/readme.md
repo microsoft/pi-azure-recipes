@@ -101,7 +101,7 @@ First you'll provision the Azure resources needed for this sample. You're going 
    6. Click **Save** in the top bar to save your view changes.
    7. Click **Back** to go back to the template landing page.
 
-2. We need to add one more view to be able to use all our device capabilities.
+1. We need to add one more view to be able to use all our device capabilities.
    1. Click **Views** in the left menu
    2. Click **Editing device and cloud data** button. 
    3. Name the form "Settings" and click the checkbox **Red LED Control**.
@@ -109,9 +109,9 @@ First you'll provision the Azure resources needed for this sample. You're going 
    5. Click **Save** to save the view.
    6. Click **Back** to go back to the template landing page.
 
-3. We have completed the device model, now all we need to do is publish the model so it becomes live in our application.  Click the **Publish** link at the top of the page.  You will see a review of changes made then click **Publish**.  The model and views are now live in your application.
+1. We have completed the device model, now all we need to do is publish the model so it becomes live in our application.  Click the **Publish** link at the top of the page.  You will see a review of changes made then click **Publish**.  The model and views are now live in your application.
 
-4. If you click **Devices** on the left navigation menu you will see your model name listed.  If you click on it you will see that no devices are attached to that model.  The next step is to start the Raspberry Pi code to connect to our application and start sending telemetry
+1. If you click **Devices** on the left navigation menu you will see your model name listed.  If you click on it you will see that no devices are attached to that model.  The next step is to start the Raspberry Pi code to connect to our application and start sending telemetry
 
 &nbsp;
 
@@ -121,11 +121,11 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 2. Using a USB drive or an SSH file transfer software move the files in the *client* folder to the Pi
 
-3. Run the *python_environment_setup.sh* shell script
+1. Run the *python_environment_setup.sh* shell script
 
-4. Once the script finishes open the sample *.env* file
+1. Once the script finishes open the newly created *.env* file
 
-5. You are going to need two pieces of information to connect your Raspberry Pi to your IoT Central application.  In your IoT Central application click **Administration** in the left navigation menu.  Then click **Device connection**, now click the copy blue box to the right of the ID scope to copy the scope id to the clipboard.  Now paste the scope id into the location shown below
+1. You are going to need two pieces of information to connect your Raspberry Pi to your IoT Central application.  In your IoT Central application click **Administration** in the left navigation menu.  Then click **Device connection**, now click the copy blue box to the right of the ID scope to copy the scope id to the clipboard.  Now paste the scope id into the location shown below
     ```
     SCOPE_ID='PASTE-YOUR-SCOPE_ID-HERE'
     ```
@@ -136,17 +136,17 @@ First you'll provision the Azure resources needed for this sample. You're going 
     GROUP_SYMMETRIC_KEY='PASTE-YOUR-GROUP_SYMMETRIC_KEY-HERE'
     ```
 
-2. In the client folder on your Pi type
+1. In the client folder on your Pi type
     ```sh
     source ./.venv/bin/activate
     ```
 
-3. Then type
+1. Then type
     ```sh
     python raspberry_pi_client.py
     ```
 
-4. Your device is now sending telemetry to IoT Hub
+1. Your device is now sending telemetry to IoT Hub
 
 &nbsp;
 
@@ -154,15 +154,15 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. Now that the device is sending data to IoT Central lets look at our device in IoT Central and interact with it.  Return to your application and click **Devices** then click on your device template "RespberryPi".  You should see a device has connected and listed.  If not then check to make sure the code is running and the scope_id and group_symmetric_key have been configured correctly on the environment.
 
-2. clicking on the device should open the **About** tab where you can see information about your Raspberry Pi that it has sent to IoT Central.  You can also see the remaining free disk space.
+1. clicking on the device should open the **About** tab where you can see information about your Raspberry Pi that it has sent to IoT Central.  You can also see the remaining free disk space.
 
 ![About Screenshot](./assets/about.png)
 
-3. Clicking on **Overview** link at the top of the page will show the telemetry information flowing from the device including CPU usage, RAM usage, CPU clock frequency, and CPU temperature.
+1. Clicking on **Overview** link at the top of the page will show the telemetry information flowing from the device including CPU usage, RAM usage, CPU clock frequency, and CPU temperature.
 
 ![Overview Screenshot](./assets/overview.png)
 
-4. Clicking the **Settings** link will allow you to turn on or off the red LED on the Raspberry Pi.  You can select On or Off and then click the **Save** link to send the setting to the device.  The device will acknowledge the receipt of the setting and show it below the dropdown.
+1. Clicking the **Settings** link will allow you to turn on or off the red LED on the Raspberry Pi.  You can select On or Off and then click the **Save** link to send the setting to the device.  The device will acknowledge the receipt of the setting and show it below the dropdown.
 
 ![Settings Screenshot](./assets/settings.png)
 
@@ -170,7 +170,7 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 ![Commands Screenshot](./assets/commands.png)
 
-6. Finally clicking **Raw Data** shows a raw data view of the telemetry and reported properties from the device.  This is always available regardless of if a device has an associated device template or not.  It is very handy for debugging the device template vs. the data being sent from the device.
+1. Finally clicking **Raw Data** shows a raw data view of the telemetry and reported properties from the device.  This is always available regardless of if a device has an associated device template or not.  It is very handy for debugging the device template vs. the data being sent from the device.
 
 ![Raw Data Screenshot](./assets/raw.png)
 

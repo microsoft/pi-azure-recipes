@@ -70,23 +70,23 @@ Let your Raspberry Pi see with Azure Computer Vision! By the end of this tutoria
     ```bash
     sudo apt install -y libgfortran5 libatlas3-base 
     ```
-2. Run the *python_environment_setup.sh* shell script
+1. Run the *python_environment_setup.sh* shell script
 
-3. Once the script finishes navigate to the *client* folder press **Ctrl + H* to show hidden files.
+1. Once the script finishes navigate to the *client* folder press **Ctrl + H* to show hidden files.
 
-4. Open the sample *.env* file in a text editor and fill in your key and endpoint
+1. Open the newly created *.env* file in a text editor and fill in your key and endpoint
     ```
     SUBSCRIPTION_KEY='YOUR-SUBSCRIPTION-KEY'
     ENDPOINT='YOUR-ENDPOINT'
     ```
 
-5. Then type
+1. Then type
     ```sh
     source .venv/bin/activate
     python raspberry_pi_client.py
     ```
 
-6. You should see the picture the camera took and what the Computer Vision service was able to identify in it.
+1. You should see the picture the camera took and what the Computer Vision service was able to identify in it.
 
 ## Clean up Resources
 
