@@ -6,7 +6,6 @@
 			"command": "host start",
 			"problemMatcher": "$func-watch",
 			"isBackground": true,
-			"dependsOn": "pipInstall",
 			"options": {
 				"cwd": "${workspaceFolder}/data_processing"
 			}
@@ -15,13 +14,13 @@
 			"label": "pipInstall",
 			"type": "shell",
 			"osx": {
-				"command": "${config:azureFunctions.pythonVenv}/bin/python -m pip install -r requirements.txt"
+				"command": "${config:azureFunctions.pythonVenv}/bin/python -m pip install -r ${workspaceFolder}/requirements.txt"
 			},
 			"windows": {
-				"command": "${config:azureFunctions.pythonVenv}\\Scripts\\python -m pip install -r requirements.txt"
+				"command": "${config:azureFunctions.pythonVenv}\\Scripts\\python -m pip install -r ${workspaceFolder}/requirements.txt"
 			},
 			"linux": {
-				"command": "${config:azureFunctions.pythonVenv}/bin/python -m pip install -r requirements.txt"
+				"command": "${config:azureFunctions.pythonVenv}/bin/python -m pip install -r ${workspaceFolder}/requirements.txt"
 			},
 			"problemMatcher": []
 		}

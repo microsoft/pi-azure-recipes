@@ -8,26 +8,30 @@ Getting messages from Azure to your Raspberry Pi is a useful tool for many IoT s
 
 1. An active Azure account. If you don't have one, you can sign up for a [free account](https://azure.microsoft.com/free/).
 1. [VS Code](https://code.visualstudio.com/Download)
-1. [Azure IoT Hub](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-toolkit) and [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) extension for VS Code
-1. Hardware listed below
+2. [Azure IoT Tools](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-tools) and [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) extensions for VS Code
+3. [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
+4. [Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#install-the-azure-functions-core-tools)
+5. [Python 3](https://www.python.org/downloads/)
+6. Hardware listed below
+
 
 ### Hardware
 
-| Item | Description | Link |
-|-|-|-|
-| Raspberry Pi 3 or 4 | Single board computer | [Adafruit](https://www.adafruit.com/product/4292) |
-| USB C power supply (Pi 4) | Power cable for Raspberry Pi 4 | [Adafruit](https://www.adafruit.com/product/4298) |
+| Item                              | Description                    | Link                                              |
+| --------------------------------- | ------------------------------ | ------------------------------------------------- |
+| Raspberry Pi 3 or 4               | Single board computer          | [Adafruit](https://www.adafruit.com/product/4292) |
+| USB C power supply (Pi 4)         | Power cable for Raspberry Pi 4 | [Adafruit](https://www.adafruit.com/product/4298) |
 | Micro USB USB power supply (Pi 3) | Power cable for Raspberry Pi 3 | [Adafruit](https://www.adafruit.com/product/1995) |
-| SD Card with Raspberry Pi OS | Operating system for the Pi | [Adafruit](https://www.adafruit.com/product/2820) |
+| SD Card with Raspberry Pi OS      | Operating system for the Pi    | [Adafruit](https://www.adafruit.com/product/2820) |
 
 ## Setup Azure Resources
 
 First we'll provision the Azure resources we need for this sample. We're going to use IoT Hub, Azure Functions, and Table Storage. We'll also setup a budget, so you can get a warning if your services are racking up a big bill. We provide two ways to provision the resources, you can walk through the step by step instructions or deploy all the resources at once using an Azure Resource Manager template.
 
-| Resource | Description | Link |
-|-|-|-|
-| IoT Hub | Two way IoT communication platform | [Azure](https://azure.microsoft.com/en-us/services/iot-hub/) |
-| Azure Functions | Serverless compute platform | [Azure](https://azure.microsoft.com/en-us/services/storage/tables/) |
+| Resource        | Description                        | Link                                                                |
+| --------------- | ---------------------------------- | ------------------------------------------------------------------- |
+| IoT Hub         | Two way IoT communication platform | [Azure](https://azure.microsoft.com/en-us/services/iot-hub/)        |
+| Azure Functions | Serverless compute platform        | [Azure](https://azure.microsoft.com/en-us/services/storage/tables/) |
 
 ### Preparing your environment
 
@@ -35,6 +39,12 @@ First we'll provision the Azure resources we need for this sample. We're going t
 
 1. Open command prompt or terminal and navigate to *pi-azure-recipes*
 
+1. Add the IoT devices capability to your subscription. In your terminal execute each of the following commands, replacing `<VARIABLE>` as needed:
+   ```bash
+   az login
+   az account set -s '<YOUR SUBCRIPTION NAME>'
+   az provider register --namespace Microsoft.Devices
+   ```
 1. In command prompt or terminal type and run ```code 02_c2d```. This will open the project folder in VS Code.
 
 1. Navigate to the Azure Extension by typing **CTRL + SHIFT + A** or by selecting the Azure logo in the left navigation
@@ -70,9 +80,25 @@ First we'll provision the Azure resources we need for this sample. We're going t
 
 1. Open the *local.settings.json* file that was created with your function.
 
-1. Add the connection string to *Values* with the variables name **"IoTHubConnectionString"**
+1. Add the connection string to *Values* with the variable **"IoTHubConnectionString"**
     ```json
-    "IoTHubConnectionString": "YOUR-CONNECTION-STRING"
+    "IoTHubConnectionString": "<YOUR-CONNECTION-STRING>"
+    ```
+1. We also need to add your **device ID** to the *local.settings.json* file. This is the name you gave your device upon creation. If you don't remember it, it should be listed in the side bar in the *Azure IoT Hub* pane.
+   ```json
+   "DeviceId": "<DEVICE_ID>"
+   ```
+1. Once you're finished your *local.settings.json* should look like this:
+    ```json
+    {
+        "IsEncrypted": false,
+        "Values": {
+            "FUNCTIONS_WORKER_RUNTIME": "python",
+            "FUNCTIONS_EXTENSION_VERSION": "~3",
+            "IoTHubConnectionString": "HostName=<IOT_HUB_NAME>.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=<IOTHUB_ACCESSKEY>",
+            "DeviceId": "<IOT_DEVICE_ID>"
+        }
+    }
     ```
 
 #### Setup you Raspberry Pi Device
@@ -89,11 +115,11 @@ First we'll provision the Azure resources we need for this sample. We're going t
 
 1. Run the *python_environment_setup.sh* shell script
 
-1. Once the script finishes open the newly created *.env* file
+1. Once the script finishes open the sample *.env* file
 
 1. Paste the device connection string there
     ```
-    CONNECTION_STRING='YOUR-DEVICE-CONNECTION-STRING'
+    CONNECTION_STRING='<YOUR-DEVICE-CONNECTION-STRING>'
     ```
 
 1. In the client folder on your Pi type
@@ -101,9 +127,9 @@ First we'll provision the Azure resources we need for this sample. We're going t
     source ./.venv/bin/activate
     ```
 
-1. Then type
+1. Then type to start your client
     ```sh
-    python3 raspberry-pi-client.py
+    python raspberry_pi_client.py
     ```
 
 1. Your device is now ready to receive telemetry from IoT Hub
@@ -121,14 +147,14 @@ First we'll provision the Azure resources we need for this sample. We're going t
         message_trigger: [GET,POST] http://localhost:7071/api/message_trigger
     ```
 
-1. Copy the url and add **$status=on** to the end of it so it reads
+1. Copy the url and add **?status=on** to the end of it so it reads
     ```
-    http://localhost:7071/api/message_trigger$status=on
+    http://localhost:7071/api/message_trigger?status=on
     ```
 
 1. This is your trigger to activate an action on your Raspberry Pi
 
-    > Make sure that *raspberry-pi-client.py* is still running on your Pi
+    > Make sure that *raspberry_pi_client.py* is still running on your Pi
 
 1. Open a web browser and past the url from the previous step
 

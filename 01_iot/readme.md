@@ -9,6 +9,9 @@ Get started with Azure IoT Hub and Raspberry Pi! This sample projects has everyt
 1. An active Azure account. If you don't have one, you can sign up for a [free account](https://azure.microsoft.com/free/).
 1. [VS Code](https://code.visualstudio.com/Download)
 1. [Azure IoT Hub](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-toolkit), [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions), and [Azure Storage](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurestorage) extension for VS Code
+1. [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
+1. [Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#install-the-azure-functions-core-tools)
+1. [Python 3](https://www.python.org/downloads/)
 1. Hardware listed below
 
 ### Hardware
@@ -36,6 +39,13 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. Open command prompt or terminal and navigate to *pi-azure-recipes*
 
+1. Add the IoT devices capability to your subscription. In your terminal execute each of the following commands, replacing `<VARIABLE>` as needed:
+   ```bash
+   az login
+   az account set -s '<YOUR SUBCRIPTION NAME>'
+   az provider register --namespace Microsoft.Devices
+   ```
+
 1. In command prompt or terminal type and run ```code 01_iot```. This will open the project folder in VS Code
 
 1. Press *F1* to open the command palette, search for and select **Azure Functions: Create New Project**
@@ -49,7 +59,7 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. Select *No* for all the prompts in the creation process
 
-1. Your function is now initialized in VS Code
+1.  Your function is now initialized in VS Code
 
 ### Create IoT Hub
 
@@ -95,7 +105,7 @@ First you'll provision the Azure resources needed for this sample. You're going 
     "AzureWebJobsStorage": "YOUR-CONNECTION-STRING"
     ```
 
-### Setup you Raspberry Pi Device
+### Setup your Raspberry Pi Device
 
 1. Press *F1* to open the command palette, search for and select **Azure IoT Hub: Create Device**
 
@@ -118,12 +128,11 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. In the client folder on your Pi type
     ```sh
-    source ./.venv/Scripts/activate
-    ```
-
+    source ./.venv/bin/activate
+    ``` 
 1. Then type
     ```sh
-    python3 raspberry-pi-client.py
+    python raspberry_pi_client.py
     ```
 
 1. Your device is now sending telemetry to IoT Hub
@@ -137,6 +146,19 @@ First you'll provision the Azure resources needed for this sample. You're going 
 1. You should see the telemetry from the Pi in the terminal windows
 
 ### Deploying your function
+
+1. Open a terminal and execute each of the following commands, replacing `<VARIABLE>` placeholders as needed:
+   ```bash
+   az login
+   az account set -s '<YOUR SUBCRIPTION NAME>'
+   az iot hub show --name '<IOT HUB NAME>' --query properties.eventHubEndpoints.events.path
+   ``` 
+1. Open 01_iot\data_processing\telemetry_saver\function.json
+     ``` 
+1. Open  *01_iot\data_processing\local.settings.json* and add a new key "eventHubName" and set the value to the output from the previous step. It should look similar to the following:
+   ```json
+   "eventHubName": "iothub-ehub-xxxxxxxxxx-xxxxxxxx-xxxxxxxxxx"
+   ```
 
 1. Press *F1* to open the command palette, search for and select *Azure Functions: Deploy to function app*
 

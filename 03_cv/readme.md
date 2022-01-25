@@ -61,10 +61,15 @@ Let your Raspberry Pi see with Azure Computer Vision! By the end of this tutoria
 
 1. Connect your Raspberry Pi to a monitor and keyboard or use the the instructions [here](https://github.com/microsoft/rpi-resources/tree/master/headless-setup) to setup your pi for SSH
 
-1. Set up your Pi camera using [this guide](https://www.raspberrypi.org/documentation/configuration/camera.md)
+1. Set up your Pi camera using [this guide](https://www.raspberrypi.com/documentation/accessories/camera.html#installing-a-raspberry-pi-camera)
 
 1. Using a USB drive or an SSH file transfer software copy the *client* folder to the Pi
 
+1. Install required C libraries
+
+    ```bash
+    sudo apt install -y libgfortran5 libatlas3-base 
+    ```
 1. Run the *python_environment_setup.sh* shell script
 
 1. Once the script finishes navigate to the *client* folder press **Ctrl + H* to show hidden files.
@@ -77,7 +82,8 @@ Let your Raspberry Pi see with Azure Computer Vision! By the end of this tutoria
 
 1. Then type
     ```sh
-    python3 cv_pi_client.py
+    source .venv/bin/activate
+    python raspberry_pi_client.py
     ```
 
 1. You should see the picture the camera took and what the Computer Vision service was able to identify in it.

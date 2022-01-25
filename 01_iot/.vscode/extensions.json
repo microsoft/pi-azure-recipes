@@ -1,6 +1,12 @@
 {
   "recommendations": [
     "ms-azuretools.vscode-azurefunctions",
-    "ms-python.python"
+    "ms-azuretools.vscode-azureresourcegroups",
+    "ms-azuretools.vscode-azurestorage",
+    "ms-dotnettools.vscode-dotnet-runtime",
+    "ms-python.python",
+    "ms-vscode.azurecli",
+    "ms-vscode.azure-account",
+    "vsciot-vscode.azure-iot-tools"
   ]
 }

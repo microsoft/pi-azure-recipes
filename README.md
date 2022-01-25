@@ -26,7 +26,7 @@ If there is something you'd like to know how to do using Azure and a Raspberry P
 
 ## Resources
 
-[Raspberry Pi Resrouces Repo](https://github.com/microsoft/rpi-resources)
+[Raspberry Pi Resources Repo](https://github.com/microsoft/rpi-resources)
 
 ## Contributing
 
