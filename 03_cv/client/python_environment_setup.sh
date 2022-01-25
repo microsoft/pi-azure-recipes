@@ -2,8 +2,8 @@
 # Setup Virtual Environment
 echo "Python virtual environment creation script"
 [[ ! -d .venv ]] \
-    && python3 -m venv --prompt 03_cv ./.venv \
-    && echo "Virtual environment created"
+&& python3 -m venv --prompt 03_cv ./.venv \
+&& echo "Virtual environment created"
 
 # Activate virtual env
 source ./.venv/bin/activate
