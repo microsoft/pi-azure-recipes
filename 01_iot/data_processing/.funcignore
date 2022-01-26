@@ -3,3 +3,5 @@
 local.settings.json
 test
 .venv
+__pycache__
+*.log

@@ -5,7 +5,7 @@
       "type": "eventHubTrigger",
       "name": "events",
       "direction": "in",
-      "eventHubName": "%eventHubName%",
+      "eventHubName": "eventHubName",
       "connection": "IoTHubConnectionString",
       "cardinality": "many",
       "consumerGroup": "$Default",
