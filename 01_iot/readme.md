@@ -91,7 +91,7 @@ First you'll provision the Azure resources needed for this sample. You're going 
    ```
 1. Copy the connection string. Don't close this yet, we'll come back to it in a second!
    
-1. Open the *local.settings.json* file that was created with your function
+1. In in te *data_processing* folder, open the *local.settings.json* file that was created with your function
 
 1. Add the connection string to *Values* with the variables name **"IoTHubConnectionString"**. It should look similar to the following:
     ```json
@@ -137,7 +137,9 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. Using a USB drive or an SSH file transfer software move the files in the *client* folder to the Pi
 
-1. Run the *python_environment_setup.sh* shell script
+1. Run the *python_environment_setup.sh* shell script:
+
+   ```bash python_environment_setup.sh```
 
 1. Once the script finishes open the newly created *.env* file
 
@@ -175,9 +177,9 @@ This will let you see the raw messages being sent by the Raspberry Pi.
    
 1. Press *F1* to open the command palette, search for and select *Azure Functions: Deploy to function app*
 
-    > Note: this will create a few resources in your azure subscription
+    > Note: this will create a few resources in your Azure subscription
 
-1. Give your function app a name
+1. Select "Create new Function App in Azure" and give your function app a name
 
 1. Select Python 3.8
 
