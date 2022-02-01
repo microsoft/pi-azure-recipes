@@ -78,14 +78,34 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. The IoT Hub should now appear in the *Azure IoT Hub* tab
 
-1. Open the command palette, search for and select **Azure IoT Hub: Copy IoT Hub Connection String**
+1. Now we need to get some information using [Azure CLI][azure-cli]
 
-1. Open the *local.settings.json* file that was created with your function
+1. First, we need to sign in. Open a terminal and execute each of the following commands, replacing `<VARIABLE>` placeholders as needed:
+   ```bash
+   az login
+   az account set -s '<YOUR SUBCRIPTION NAME>'
+   ```
+1. Now let's retrieve the connection string for the built-in event endpoint:
+   ```bash
+   az iot hub connection-string show -n '<IOT HUB NAME>' --default-eventhub --query connectionString
+   ```
+1. Copy the connection string. Don't close this yet, we'll come back to it in a second!
+   
+1. In in te *data_processing* folder, open the *local.settings.json* file that was created with your function
 
-1. Add the connection string to *Values* with the variables name **"IoTHubConnectionString"**
+1. Add the connection string to *Values* with the variables name **"IoTHubConnectionString"**. It should look similar to the following:
     ```json
-    "IoTHubConnectionString": "YOUR-CONNECTION-STRING"
+    "IoTHubConnectionString": "Endpoint=sb://<NAMESPACE>.servicebus.windows.net/;SharedAccessKeyName=iothubowner;SharedAccessKey=<SHARED_ACCESS_KEY>;EntityPath=<EVENT_HUB_NAME>"
     ```
+1. Now let's get the build-in event endpoint name:
+   ```bash
+   az iot hub show --name '<IOT HUB NAME>' --query properties.eventHubEndpoints.events.path
+   ``` 
+
+1. In the same *local.settings.json*, add a new key called **eventHubName** in the *Values* section and set the value to the output from the previous step. It should look similar to the following:
+   ```json
+   "eventHubName": "iothub-ehub-xxxxxxxxxx-xxxxxxxx-xxxxxxxxxx"
+   ```
 
 ### Create storage account
 
@@ -102,7 +122,7 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. Add the connection string to *Values* with the variables name **"AzureWebJobsStorage"**
     ```json
-    "AzureWebJobsStorage": "YOUR-CONNECTION-STRING"
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=<STORAGE_ACCOUNT_NAME>;AccountKey=<ACCOUNT_KEY>;EndpointSuffix=core.windows.net"
     ```
 
 ### Setup your Raspberry Pi Device
@@ -117,13 +137,15 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. Using a USB drive or an SSH file transfer software move the files in the *client* folder to the Pi
 
-1. Run the *python_environment_setup.sh* shell script
+1. Run the *python_environment_setup.sh* shell script:
+
+   ```bash python_environment_setup.sh```
 
 1. Once the script finishes open the newly created *.env* file
 
-1. Paste the device connection string there
+1. Paste the device connection string between the single quotes. It should look similar to the following:
     ```
-    CONNECTION_STRING='YOUR-DEVICE-CONNECTION-STRING'
+    CONNECTION_STRING='HostName=<IOTHUB_NAME>.azure-devices.net;DeviceId=<DEVICE_NAME>;SharedAccessKey=<SHARED_ACCESS_KEY>'
     ```
 
 1. In the client folder on your Pi type
@@ -137,34 +159,27 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. Your device is now sending telemetry to IoT Hub
 
-### Test your function locally
+### Monitoring locally
+This will let you see the raw messages being sent by the Raspberry Pi.
 
-1. In the VS Code on you computer open **__init\__\.py** from  *01_iot\data_processing\telemetry_saver*
+1. In the VS Code, open the command palette with the `F1` key 
 
-1. Press *F5* to begin debugging
+1. Search for and select "Azure IoT Hub: Start monitoring built-in event endpoint" 
 
 1. You should see the telemetry from the Pi in the terminal windows
+   ![VS Code IoT Hub Monitor ouput window](assets/vscode-iothub-monitor-output.png)
+   
+1. To stop monitoring, open the command palette and select "Azure IoT Hub: Stop monitoring built-in event endpoint"
 
 ### Deploying your function
 
-1. Open a terminal and execute each of the following commands, replacing `<VARIABLE>` placeholders as needed:
-   ```bash
-   az login
-   az account set -s '<YOUR SUBCRIPTION NAME>'
-   az iot hub show --name '<IOT HUB NAME>' --query properties.eventHubEndpoints.events.path
-   ``` 
-1. Open 01_iot\data_processing\telemetry_saver\function.json
-     ``` 
-1. Open  *01_iot\data_processing\local.settings.json* and add a new key "eventHubName" and set the value to the output from the previous step. It should look similar to the following:
-   ```json
-   "eventHubName": "iothub-ehub-xxxxxxxxxx-xxxxxxxx-xxxxxxxxxx"
-   ```
-
+1. Open *data_processing\telemetry_saver\function.json*
+   
 1. Press *F1* to open the command palette, search for and select *Azure Functions: Deploy to function app*
 
-    > Note: this will create a few resources in your azure subscription
+    > Note: this will create a few resources in your Azure subscription
 
-1. Give your function app a name
+1. Select "Create new Function App in Azure" and give your function app a name
 
 1. Select Python 3.8
 
@@ -172,22 +187,31 @@ First you'll provision the Azure resources needed for this sample. You're going 
 
 1. When the function deployment completes you will be given the option to upload your local settings. Select *Upload settings* to upload your connection string to the App settings in Azure
 
+### Monitoring remotely
+Let's see your function executing on Azure!
+
+1. Open the command palette
+
+1. Search for and select *Azure Functions: Start Streaming Logs*, press Enter
+
+1. This will open Azure in your browser. You should see something similar like this:
+   ![Azure live metrics dashboard](assets/log-stream-dashboard.png)
+
 ## Clean up Resources
 
-If you keep the resources you provisioned you'll continue to incur costs on them. The steps below
+If you keep the resources you provisioned you'll continue to incur costs on them. Let's clean them up!
 
-1. In Visual Studio Code, press *F1* to open the command palette. In the command palette, search for and select *Azure Functions: Open in portal*
+1. In Visual Studio Code, press *F1* to open the command palette. In the command palette, search for and select *Azure Resource Groups: Delete...*
 
-1. Choose your function app, and press Enter. The function app page opens in the Azure portal
+1. Choose your resource group, and press Enter. Follow the prompt(s).
 
-1. In the Overview tab, select the named link next to *Resource group*
+1. Now let's delete the storage. Open the command palette again and search for and select *Azure Storage: Delete Storage Account...*
 
-1. Select the resource group to delete from the function app page
-
-1. In the Resource group page, review the list of included resources, and verify that they are the ones you want to delete
-
-1. Select Delete resource group, and follow the instructions.
-
-1. Repeat these steps for the storage account you created, except in step 1 search for and select *Azure Storage: Open in portal*
+1. Select the storage account to delete and press Enter
+   
+1. Double-check and confirm your decision when you are prompted.
 
 Deletion may take a couple of minutes. When it's done, a notification appears for a few seconds. You can also select the bell icon at the top of the page to view the notification.
+
+<!-- Links -->
+[azure-cli]: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest "Install Azure CLI"

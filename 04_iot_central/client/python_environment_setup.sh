@@ -2,8 +2,8 @@
 # Setup Virtual Environment
 echo "Python virtual environment creation script"
 [[ ! -d .venv ]] \
-    && python3 -m venv --prompt 04_iot_central ./.venv \
-    && echo "Virtual environment created"
+&& python3 -m venv --prompt 04_iot_central ./.venv \
+&& echo "Virtual environment created"
 
 # Activate virtual env
 source ./.venv/bin/activate
