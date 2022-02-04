@@ -162,7 +162,7 @@ First you'll provision the Azure resources needed for this sample. You're going 
 ### Monitoring locally
 This will let you see the raw messages being sent by the Raspberry Pi.
 
-1. In the VS Code, open the command palette with the `F1` key 
+1. In VS Code, open the command palette with the `F1` key 
 
 1. Search for and select "Azure IoT Hub: Start monitoring built-in event endpoint" 
 
