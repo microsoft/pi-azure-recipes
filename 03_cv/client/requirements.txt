@@ -16,7 +16,7 @@ numpy==1.22.0
 oauthlib==3.2.1
 packaging==21.3
 picamera==1.13
-Pillow==9.0.1
+Pillow==9.3.0
 pyparsing==3.0.6
 python-dateutil==2.8.2
 python-dotenv==0.19.2
