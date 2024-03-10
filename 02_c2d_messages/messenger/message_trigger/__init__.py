@@ -7,6 +7,8 @@ import azure.functions as func
 
 from azure.iot.hub import IoTHubRegistryManager
 
+# These environment variables are populated from
+# local.settings.json or Azure App Service Config
 CONNECTION_STRING = os.getenv("IoTHubConnectionString")
 DEVICE_ID = os.getenv("DeviceId")
 

@@ -10,8 +10,8 @@ Getting messages from Azure to your Raspberry Pi is a useful tool for many IoT s
 1. [VS Code](https://code.visualstudio.com/Download)
 2. [Azure IoT Tools](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-tools) and [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) extensions for VS Code
 3. [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
-4. [Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#install-the-azure-functions-core-tools)
-5. [Python 3](https://www.python.org/downloads/)
+4. [Azure Functions Core Tools v3](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#install-the-azure-functions-core-tools)
+5. [Python 3.8](https://www.python.org/downloads/)
 6. Hardware listed below
 
 
@@ -37,19 +37,17 @@ First we'll provision the Azure resources we need for this sample. We're going t
 
 1. If you haven't already, clone this repo to your computer
 
-1. Open command prompt or terminal and navigate to *pi-azure-recipes*
+1. Open a terminal and navigate to *pi-azure-recipes*
 
-1. Add the IoT devices capability to your subscription. In your terminal execute each of the following commands, replacing `<VARIABLE>` as needed:
+1. We need to add the IoT devices capability to your subscription. In your terminal execute each of the following commands, replacing `<VARIABLE>` as needed:
    ```bash
    az login
    az account set -s '<YOUR SUBCRIPTION NAME>'
    az provider register --namespace Microsoft.Devices
    ```
-1. In command prompt or terminal type and run ```code 02_c2d```. This will open the project folder in VS Code.
+1. In your terminal run `code 02_c2d`. This will open the project folder in VS Code.
 
-1. Navigate to the Azure Extension by typing **CTRL + SHIFT + A** or by selecting the Azure logo in the left navigation
-
-1. In the Functions Tab select *create new project*
+1. Press *F1* to open the command palette, search for and select *Azure Functions: Create New Project*
 
 1. Choose browse, and select the folder named *messenger*
 
@@ -66,50 +64,51 @@ First we'll provision the Azure resources we need for this sample. We're going t
 
 1. Next you'll set up and IoT Hub. This will deploy a resource on Azure.
 
-1. Navigate back the explorer by typing **Ctrl + Shift + E** or selecting the pages icon from the left navigation
+1. Open the command palette in VS Code, search for and select *Azure IoT Hub: Create IoT Hub*
 
-1. In the *Azure Iot Hub* tab select the options menu in the top right
+1. Select your subscription 
 
-1. Select *Create new IoT Hub*
+1. Select *+ Create Resource Group* and provide a name
 
-1. From the drop menu select your subscription the select *+ Create Resource Group*
+1. Select a [region that is nearest you](https://azure.microsoft.com/en-us/global-infrastructure/geographies/#geographies).
+   
+1. Select the *F1: Free Tier*
+   > :zap: You can only have one IoT Hub using the free tier
 
-1. The IoT Hub should now appear in the *Azure IoT Hub* tab
-
-1. From the options menu select *Copy IoT Hub Connection String*
+1. Open the command palette, search for and select  *Azure IoT Hub: Copy IoT Hub Connection String*
 
 1. Open the *local.settings.json* file that was created with your function.
 
-1. Add the connection string to *Values* with the variable **"IoTHubConnectionString"**
+1. Add the connection string to *Values* with the variable *IoTHubConnectionString*
     ```json
-    "IoTHubConnectionString": "<YOUR-CONNECTION-STRING>"
+    "IoTHubConnectionString": "HostName=<IOT_HUB_NAME>.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=<SHARED_ACCESSKEY>"
     ```
-1. We also need to add your **device ID** to the *local.settings.json* file. This is the name you gave your device upon creation. If you don't remember it, it should be listed in the side bar in the *Azure IoT Hub* pane.
+1. We also need to add your device ID to the *local.settings.json* file. This is the name you gave your device upon creation. If you don't remember it, it should be listed in the side bar in the *Azure IoT Hub* view under *Devices*.
    ```json
    "DeviceId": "<DEVICE_ID>"
    ```
-1. Once you're finished your *local.settings.json* should look like this:
+1. Once you're finished, your *local.settings.json* should look like this:
     ```json
     {
         "IsEncrypted": false,
         "Values": {
             "FUNCTIONS_WORKER_RUNTIME": "python",
             "FUNCTIONS_EXTENSION_VERSION": "~3",
-            "IoTHubConnectionString": "HostName=<IOT_HUB_NAME>.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=<IOTHUB_ACCESSKEY>",
-            "DeviceId": "<IOT_DEVICE_ID>"
+            "IoTHubConnectionString": "HostName=<IOT_HUB_NAME>.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=<SHARED_ACCESSKEY>",
+            "DeviceId": "<DEVICE_ID>"
         }
     }
     ```
 
-#### Setup you Raspberry Pi Device
+#### Setup your Raspberry Pi Device
 
-1. From the IoT Hub options menu select *Create Device*
+1. Open the command palette, search for and select *Azure IoT Hub: Create Device*
 
 1. Give the device a name
 
-1. The connection string for the device should print in the Output window, note this connection string, you'll need later on your Raspberry Pi
+1. The connection string for the device should print in the *Output* window, copy or save this connection string, you'll need it later on your Raspberry Pi
 
-1. Connect your raspberry Pi to a monitor and keyboard or use the the instructions [here](https://github.com/microsoft/rpi-resources/tree/master/headless-setup) to setup your pi for SSH
+1. Connect your Raspberry Pi to a monitor and keyboard or use the the instructions [here](https://github.com/microsoft/rpi-resources/tree/master/headless-setup) to setup your Pi for SSH
 
 1. Using a USB drive or an SSH file transfer software move the files in the *client* folder to the Pi
 
@@ -117,12 +116,12 @@ First we'll provision the Azure resources we need for this sample. We're going t
 
 1. Once the script finishes open the sample *.env* file
 
-1. Paste the device connection string there
-    ```
-    CONNECTION_STRING='<YOUR-DEVICE-CONNECTION-STRING>'
+1. Paste the device connection string there, it should look similar to the following:
+    ```shell
+    CONNECTION_STRING='HostName=<IOT_HUB_NAME>.azure-devices.net;DeviceId=<DEVICE_ID>;SharedAccessKey=<SHARED_ACCESSKEY>'
     ```
 
-1. In the client folder on your Pi type
+1. Activate your Python virtual environment. In a terminal, navigate to the *client* folder and type
     ```sh
     source ./.venv/bin/activate
     ```
@@ -136,58 +135,93 @@ First we'll provision the Azure resources we need for this sample. We're going t
 
 ### Test your function locally
 
-1. On your computer with vs code open to the 02_c2d_messages workspace open the file named *__init\__\.py* in *messenger/message_trigger*
+1. Open a terminal and navigate to the *messenger* folder
 
-1. Press *F5* to start debugging your azure function locally
+1. Let's start our function! In your terminal, run:
+   ```sh
+   func host start
+   ```
+   > :memo: The function runtime host can take about a minute to start.
+    
+   > :bug: There is a known issue when downloading an external resource can fail, if you encounter it, simply delete the `extensionBundle` section from your *host.json* file.
 
-1. Once your function has started you'll see a url that look like
+1. Once your function has started, you'll see a url that looks like
     ```sh
     Functions:
 
         message_trigger: [GET,POST] http://localhost:7071/api/message_trigger
     ```
 
-1. Copy the url and add **?status=on** to the end of it so it reads
+1. Copy the url and add *?status=on* to the end of it so it reads
     ```
     http://localhost:7071/api/message_trigger?status=on
     ```
+    > :memo:  This is your trigger to activate an action on your Raspberry Pi, so make sure that *raspberry_pi_client.py* is still running!
 
-1. This is your trigger to activate an action on your Raspberry Pi
-
-    > Make sure that *raspberry_pi_client.py* is still running on your Pi
-
-1. Open a web browser and past the url from the previous step
+1. Open a web browser and paste the url from the previous step
 
 1. Your Pi should print out ```Device is on```
 
 ### Deploy your function to Azure
 
 1. Press *F1* to open the command palette, search for and select *Azure Functions: Deploy to function app*
+    > :memo: This will create a few resources in your Azure subscription
 
-    > Note: this will create a few resources in your azure subscription
+1. Select "Create new Function App in Azure... Advanced"
 
 1. Give your function app a name
 
-1. Select Python 3.8
+1. Select *Python 3.8*
 
-1. Select a region near where you are located
+1. Select the resource group you created for your IoT Hub
 
-1. When the function deployment completes you will be given the option to upload your local settings. Select *Upload settings* to upload your connection string to the App settings in Azure
+1. Select a [region near where you are located](https://azure.microsoft.com/en-us/global-infrastructure/geographies/#geographies)
+
+1. Select *Consumption* for your hosting plan
+
+1. Select *Create a new storage account* and provide a name
+
+1. Select *+ Create new Application Insights resource* and provide a name
+    > :sparkle:  Application Insights help you monitor the health and usage of your function.
+
+1. When the function deployment completes you should be given the option to upload your local settings. Select *Upload settings* to upload your connection string to the App settings in Azure. 
+    If not, open the command palette, search for and select *Azure Functions: Upload Local Settings* and select your function app.
+
+### Monitoring remotely
+Let's see your function executing on Azure!
+
+> :memo:  Make sure that *raspberry_pi_client.py* on your Pi is still running!
+
+1. Open the command palette
+
+1. Search for and select *Azure Functions: Start Streaming Logs*, press Enter.
+
+1. This will open Azure in your browser. You should see something similar to this:
+   ![Azure live metrics dashboard](assets/log-stream-dashboard.png)
+
+1. Open the command palette in VS Code, search for and select *Azure Functions: Execute Function Now...*
+
+1. Select your subscription
+
+1. Select your function app
+
+1. Select your function *message_trigger*
+
+1. In the box enter `{ "status": "on" }`
+
+1. Your Pi should print `Device is on` and the Live Metrics dashboard should show telemetry that `Functions.message_trigger` was executed successfully.
 
 ## Clean up Resources
 
-If you keep the resources you provisioned you'll continue to incur costs on them. The steps below will
+If you keep the resources you provisioned you'll continue to incur costs on them. Let's clean them up!
 
-1. In Visual Studio Code, press *F1* to open the command palette. In the command palette, search for and select *Azure Functions: Open in portal*
+1. In Visual Studio Code, press *F1* to open the command palette. In the command palette, search for and select *Azure Resource Groups: Delete...*
 
-1. Choose your function app, and press Enter. The function app page opens in the Azure portal
+1. Choose your resource group, and press Enter. Follow the prompt(s).
 
-1. In the Overview tab, select the named link next to *Resource group*
+1. You can double check that you've deleted all of your resources by going to [*All Resources* in the Azure portal](https://portal.azure.com/#blade/HubsExtension/BrowseAll) or by running the following in your terminal:
+   ```sh
+   az resource list -o table --subscription '<SUBSCRIPTION NAME>'
+   ```
 
-1. Select the resource group to delete from the function app page
-
-1. In the Resource group page, review the list of included resources, and verify that they are the ones you want to delete
-
-1. Select Delete resource group, and follow the instructions.
-
-Deletion may take a couple of minutes. When it's done, a notification appears for a few seconds. You can also select the bell icon at the top of the page to view the notification.
+Deletion may take a couple of minutes. When it's done, a notification will appear for a few seconds. You can also view your notifications by opening the command palette and selecting *Notifications: Show Notifications*.
